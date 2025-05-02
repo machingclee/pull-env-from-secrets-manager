@@ -17,7 +17,7 @@ export default class SecretUtil {
             return this.jsonToYml(nestedJsonSecret);
         }
         else if (format === "json") {
-            return JSON.stringify(nestedJsonSecret);
+            return JSON.stringify(nestedJsonSecret, null, 4);
         }
         return "{}";
     }

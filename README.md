@@ -6,7 +6,7 @@ Assume that in AWS secret manages we have defined a secret `abc` with `a.b.c = "
 // pull-env.ts
 import { downloadConfig } from "secrets-manager-to-config";
 
-downloadJson();
+downloadConfig();
 ```
 
 now you can pull your secret into nested `json` or `yml` by

@@ -1,6 +1,6 @@
 {
   "name": "secrets-manager-to-config",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "Pull secrets from secrets managers as nested json or yml file",
   "scripts": {
     "build": "tsc",
@@ -29,8 +29,6 @@
     "@types/minimist": "^1.2.5",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21",
-    "minimist": "^1.2.8",
-    "serverless": "^3.38.0",
-    "tsm": "^2.3.0"
+    "minimist": "^1.2.8"
   }
 }

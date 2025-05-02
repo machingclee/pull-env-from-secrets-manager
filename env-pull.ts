@@ -8,6 +8,8 @@ const downloadConfig = async () => {
     const format = (args.format || "yml") as FileFormat
     const save_at = (args.save_at || "") as string;
 
+    console.log(`Pulling secret ${secret_name} in ${format} format ...`)
+
     const envUtil = new SecretUtil();
 
     const nestedJsonSecret = await envUtil.getSecretAsJson(secret_name);
@@ -15,6 +17,7 @@ const downloadConfig = async () => {
 
     if (save_at) {
         fs.writeFileSync(save_at, formatedSecret);
+        console.log(`config pulled at ${save_at}`)
     }
 }
 
