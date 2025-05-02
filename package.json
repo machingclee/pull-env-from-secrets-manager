@@ -1,0 +1,36 @@
+{
+  "name": "secrets-manager-to-config",
+  "version": "1.0.5",
+  "description": "Pull secrets from secrets managers as nested json or yml file",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "secret-pull": "ts-node secretPull"
+  },
+  "types": "dist/index.d.ts",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com-machingclee:machingclee/pull-env-from-secrets-manager.git"
+  },
+  "keywords": [
+    "secrets-manager"
+  ],
+  "author": "machingclee",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@aws-sdk/client-secrets-manager": "^3.799.0",
+    "@types/lodash": "^4.17.16",
+    "@types/minimist": "^1.2.5",
+    "js-yaml": "^4.1.0",
+    "lodash": "^4.17.21",
+    "minimist": "^1.2.8",
+    "serverless": "^3.38.0",
+    "tsm": "^2.3.0"
+  }
+}
