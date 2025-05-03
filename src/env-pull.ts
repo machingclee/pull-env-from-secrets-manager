@@ -1,8 +1,8 @@
 import minimist from "minimist"
 import fs from "fs";
-import SecretUtil, { FileFormat } from "./SecretUtil";
+import SecretUtil, { FileFormat, SecretConfig } from "./SecretUtil";
 
-const downloadConfig = async () => {
+const downloadConfig = async (config: Partial<SecretConfig> = {}) => {
     const args = minimist(process.argv.slice(2));
     const secret_name = args.secret_name;
     const format = (args.format || "yml") as FileFormat
@@ -10,10 +10,10 @@ const downloadConfig = async () => {
 
     console.log(`Pulling secret ${secret_name} in ${format} format ...`)
 
-    const envUtil = new SecretUtil();
+    const secretUtil = new SecretUtil(config);
 
-    const nestedJsonSecret = await envUtil.getSecretAsJson(secret_name);
-    const formatedSecret = envUtil.toTargetFomat(nestedJsonSecret, format)
+    const jsons = await secretUtil.getSecretAsJson(secret_name);
+    const formatedSecret = secretUtil.toTargetFomat(jsons, format)
 
     if (save_at) {
         fs.writeFileSync(save_at, formatedSecret);

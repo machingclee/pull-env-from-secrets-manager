@@ -2,7 +2,7 @@ import { GetSecretValueCommand, GetSecretValueCommandOutput, SecretsManagerClien
 import lodash from "lodash";
 import * as yaml from 'js-yaml';
 
-export type FileFormat = "yml" | "json"
+export type FileFormat = "yml" | "json" | "flat_env"
 export type SecretConfig = { awsRegion: string }
 
 export default class SecretUtil {
@@ -12,12 +12,18 @@ export default class SecretUtil {
         this.secretConfig = { ...this.secretConfig, ...config };
     }
 
-    toTargetFomat(nestedJsonSecret: any, format: FileFormat) {
+    toTargetFomat(json: { nestedJson: any, flatJson: any }, format: FileFormat) {
+        const { flatJson, nestedJson } = json;
         if (format === "yml") {
-            return this.jsonToYml(nestedJsonSecret);
+            return this.jsonToYml(nestedJson);
         }
         else if (format === "json") {
-            return JSON.stringify(nestedJsonSecret, null, 4);
+            return JSON.stringify(nestedJson, null, 2);
+        }
+        else if (format === "flat_env") {
+            return Object.entries(flatJson).map(([flatKey, value]) => {
+                return `${flatKey}=${value}`
+            }).join("\n")
         }
         return "{}";
     }
@@ -50,10 +56,15 @@ export default class SecretUtil {
         const secret = response.SecretString || "{}";
         const json = JSON.parse(secret);
         const nestedJson: { [key: string]: any } = {}
-        Object.entries(json).forEach(([k, v]) => {
+        const flatJson: { [key: string]: any } = {}
+        Object.entries(json).sort(([k1, _], [k2, __]) => {
+            return k1.localeCompare(k2)
+        }).forEach(([k, v]) => {
             lodash.set(nestedJson, k, v);
+            flatJson[k] = v
         })
-        return nestedJson
+
+        return { nestedJson, flatJson }
     }
 }
 
