@@ -1,6 +1,6 @@
 {
   "name": "secrets-manager-to-config",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Pull secrets from secrets managers as nested json or yml file",
   "scripts": {
     "build": "tsc",
@@ -10,7 +10,7 @@
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "git@github.com-machingclee:machingclee/pull-env-from-secrets-manager.git"
+    "url": "https://github.com/machingclee/pull-env-from-secrets-manager.git"
   },
   "keywords": [
     "secrets-manager"
@@ -29,5 +29,6 @@
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21",
     "minimist": "^1.2.8"
-  }
+  },
+  "homepage": "https://github.com/machingclee/pull-env-from-secrets-manager#readme"
 }
