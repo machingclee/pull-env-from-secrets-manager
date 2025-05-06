@@ -1,6 +1,8 @@
-# secrets-manager-to-config
+ecrets-manager-to-conf
+- [Upload ts-file as Secret](#upload-ts-file-as-secret)
+- [Download Secrets](#download-secrets)
 
-## Upload ts-file as Secret
+# Upload ts-file as Secret
 
 When we choose to version our secrets by code, this package aims at managing secrets saved in `ts` format, so that UAT, PROD etc environments can infer their type from DEV config.
 
@@ -48,9 +50,9 @@ ts-node upload-secret.ts --secret_name some-test-config --ts_path config/test.ts
 
 We have the following in secret manager:
 
-<a href="src/images/secrets.png"><img src="src/images/secrets.png" width="560"/><a>
+<a href="src/images/secrets.png"><img src="src/images/secrets.png"/><a>
 
-## Dwonload Secrets
+# Download Secrets
 
 Assume that in AWS secret manages we have defined a secret `abc` with `a.b.c = "123"`, then create a file `download.ts` and write
 
@@ -66,9 +68,9 @@ const secretConfig: SecretConfig = {
 downloadConfig(secretConfig);
 ```
 
-now you can pull your secret into nested `json` or `yml` or `flat_env` by
+now you can pull your secret by
 
-```js
+```bash
 ts-node download.ts --secret_name abc --format yml --save_at test.yml
 ```
 

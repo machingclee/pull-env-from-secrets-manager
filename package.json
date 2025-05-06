@@ -1,6 +1,6 @@
 {
   "name": "secrets-manager-to-config",
-  "version": "1.0.16",
+  "version": "1.0.21",
   "description": "Pull secrets from secrets managers as nested json or yml file",
   "scripts": {
     "build": "tsc",
@@ -20,8 +20,7 @@
   "devDependencies": {
     "@types/js-yaml": "^4.0.9",
     "@types/node": "^22.15.11",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.8.3"
+    "ts-node": "^10.9.2"
   },
   "dependencies": {
     "@aws-sdk/client-secrets-manager": "^3.799.0",
@@ -33,7 +32,8 @@
     "@types/responselike": "^1.0.3",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21",
-    "minimist": "^1.2.8"
+    "minimist": "^1.2.8",
+    "typescript": "^5.8.3"
   },
   "homepage": "https://github.com/machingclee/pull-env-from-secrets-manager#readme"
 }
