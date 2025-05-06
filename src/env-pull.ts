@@ -1,6 +1,20 @@
 import minimist from "minimist"
 import fs from "fs";
 import SecretUtil, { FileFormat, SecretConfig } from "./SecretUtil";
+import path from "path";
+import ts from "typescript"
+
+const uploadConfig = async (config: Partial<SecretConfig> = {}) => {
+    const secretUtil = new SecretUtil(config);
+    const args = minimist(process.argv.slice(2));
+    const secret_name = args.secret_name;
+    const ts_path = args.ts_path
+    const json = secretUtil.parseTypeScriptFileToJSON(ts_path)
+    const flattened = secretUtil.flattenJson(json);
+    secretUtil.uploadSecret(secret_name, JSON.stringify(flattened));
+    console.log(`Uploaded the following to secret ${secret_name}`);
+    console.log(json);
+}
 
 const downloadConfig = async (config: Partial<SecretConfig> = {}) => {
     const args = minimist(process.argv.slice(2));
@@ -21,7 +35,7 @@ const downloadConfig = async (config: Partial<SecretConfig> = {}) => {
     }
 }
 
-export { downloadConfig }
+export { downloadConfig, uploadConfig }
 
 
 

@@ -1,11 +1,7 @@
-import { downloadConfig } from "./src/env-pull"
+import { downloadConfig, uploadConfig } from "./src/env-pull"
 import { FileFormat, SecretConfig } from "./src/SecretUtil"
 
 
 export {
-    downloadConfig, FileFormat, SecretConfig
+    downloadConfig, uploadConfig, FileFormat, SecretConfig
 }
-
-export default {
-    downloadConfig
-};
