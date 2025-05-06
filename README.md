@@ -1,12 +1,17 @@
-ecrets-manager-to-conf
-- [Upload ts-file as Secret](#upload-ts-file-as-secret)
+- [Upload a ts-file as a Secret](#upload-a-ts-file-as-a-secret)
+  - [`ts-node upload.ts --secret_name <secret-name> --ts_path <ts-file-path>`](#ts-node-uploadts---secret_name-secret-name---ts_path-ts-file-path)
+  - [Sample Result](#sample-result)
 - [Download Secrets](#download-secrets)
+  - [`ts-node download.ts --secret_name <secret-name> --format <format> --save_at <file-path>`](#ts-node-downloadts---secret_name-secret-name---format-format---save_at-file-path)
 
-# Upload ts-file as Secret
 
-When we choose to version our secrets by code, this package aims at managing secrets saved in `ts` format, so that UAT, PROD etc environments can infer their type from DEV config.
+# Upload a ts-file as a Secret
 
-Assume that we have the following env config:
+## `ts-node upload.ts --secret_name <secret-name> --ts_path <ts-file-path>`
+
+This package aims at managing secrets saved in `ts` format, so that `UAT`, `PROD` etc environments can infer their type from `DEV` config.
+
+Assume that we have the following env config written in `ts` file:
 
 ```ts
 // config/test.ts
@@ -27,8 +32,12 @@ const someConfig: {
 
 export default someConfig;
 ```
+Then this ***default export*** can be uploaded to secrets manager via
 
-Then create a file called `upload.ts`:
+```bash
+ts-node upload.ts --secret_name some-test-config --ts_path config/test.ts
+```
+where `upload.ts` is defined `uploadConfig` in this package:
 
 ```ts
 // upload.ts
@@ -41,18 +50,15 @@ const secretConfig: SecretConfig = {
 
 uploadConfig(secretConfig);
 ```
-
-Now when we execute
-
-```bash
-ts-node upload-secret.ts --secret_name some-test-config --ts_path config/test.ts
-```
+## Sample Result
 
 We have the following in secret manager:
 
 <a href="src/images/secrets.png"><img src="src/images/secrets.png"/><a>
 
 # Download Secrets
+
+## `ts-node download.ts --secret_name <secret-name> --format <format> --save_at <file-path>`
 
 Assume that in AWS secret manages we have defined a secret `abc` with `a.b.c = "123"`, then create a file `download.ts` and write
 
