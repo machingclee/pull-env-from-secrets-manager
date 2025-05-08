@@ -10,6 +10,9 @@ const uploadConfig = async (config: Partial<SecretConfig> = {}) => {
     const secret_name = args.secret_name;
     const ts_path = args.ts_path
     const json = secretUtil.parseTypeScriptFileToJSON(ts_path)
+    if (!json) {
+        throw Error("Upload failed");
+    }
     const flattened = secretUtil.flattenJson(json);
     secretUtil.uploadSecret(secret_name, JSON.stringify(flattened));
     console.log(`Uploaded the following to secret ${secret_name}`);

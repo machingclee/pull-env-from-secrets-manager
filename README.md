@@ -1,13 +1,17 @@
-- [Upload a ts-file as a Secret](#upload-a-ts-file-as-a-secret)
-  - [`ts-node upload.ts --secret_name <secret-name> --ts_path <ts-file-path>`](#ts-node-uploadts---secret_name-secret-name---ts_path-ts-file-path)
+# secrets-manager-to-config
+## Table of Contents
+
+- [secrets-manager-to-config](#secrets-manager-to-config)
+  - [Upload a ts-file as a Secret](#upload-a-ts-file-as-a-secret)
+    - [ts-node upload.ts --secret\_name \<secret-name\> --ts\_path \<ts-filepath\>](#ts-node-uploadts---secret_name-secret-name---ts_path-ts-filepath)
   - [Sample Result](#sample-result)
-- [Download Secrets](#download-secrets)
-  - [`ts-node download.ts --secret_name <secret-name> --format <format> --save_at <file-path>`](#ts-node-downloadts---secret_name-secret-name---format-format---save_at-file-path)
+  - [Download Secrets](#download-secrets)
+    - [ts-node download.ts --secret\_name \<secret-name\> --format \<format\> --save\_at \<filepath\>](#ts-node-downloadts---secret_name-secret-name---format-format---save_at-filepath)
 
 
-# Upload a ts-file as a Secret
+## Upload a ts-file as a Secret
 
-## `ts-node upload.ts --secret_name <secret-name> --ts_path <ts-file-path>`
+### ts-node upload.ts --secret_name \<secret-name\> --ts_path \<ts-filepath\>
 
 This package aims at managing secrets saved in `ts` format, so that `UAT`, `PROD` etc environments can infer their type from `DEV` config.
 
@@ -37,7 +41,7 @@ Then this ***default export*** can be uploaded to secrets manager via
 ```bash
 ts-node upload.ts --secret_name some-test-config --ts_path config/test.ts
 ```
-where `upload.ts` is defined `uploadConfig` in this package:
+where `upload.ts` is defined by `uploadConfig`:
 
 ```ts
 // upload.ts
@@ -56,9 +60,9 @@ We have the following in secret manager:
 
 <a href="src/images/secrets.png"><img src="src/images/secrets.png"/><a>
 
-# Download Secrets
+## Download Secrets
 
-## `ts-node download.ts --secret_name <secret-name> --format <format> --save_at <file-path>`
+### ts-node download.ts --secret_name \<secret-name\> --format \<format\> --save_at \<filepath\>
 
 Assume that in AWS secret manages we have defined a secret `abc` with `a.b.c = "123"`, then create a file `download.ts` and write
 
