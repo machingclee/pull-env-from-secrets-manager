@@ -1,7 +1,14 @@
-import { downloadConfig, uploadConfig } from "./src/env-pull"
-import { FileFormat, SecretConfig } from "./src/SecretUtil"
-
+import {
+  downloadConfig,
+  uploadConfig,
+  parseTypescriptToJson,
+} from "./src/env-pull";
+import { FileFormat, SecretConfig } from "./src/SecretUtil";
 
 export {
-    downloadConfig, uploadConfig, FileFormat, SecretConfig
-}
+  downloadConfig,
+  uploadConfig,
+  parseTypescriptToJson,
+  FileFormat,
+  SecretConfig,
+};

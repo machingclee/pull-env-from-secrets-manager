@@ -1,6 +1,6 @@
 {
   "name": "secrets-manager-to-config",
-  "version": "1.0.31",
+  "version": "1.0.41",
   "description": "Pull secrets from secrets managers as nested json or yml file",
   "scripts": {
     "build": "tsc",
